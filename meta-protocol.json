@@ -1,0 +1,23 @@
+{
+  "protocolName": "cronjob-protocol",
+  "description": "Run functions in a timely fashion",
+  "entrypoint": "./dist/index.js",
+  "version": "1.0.0",
+  "className": "CronJob",
+  "packageDetails": {
+    "functionsDefinitions": [
+      {
+        "input": {},
+        "output": {},
+        "functionName": "stopJob",
+        "description": "stops running job"
+      },
+      {
+        "input": {},
+        "output": {},
+        "functionName": "startJob",
+        "description": "Start the job"
+      }
+    ]
+  }
+}
