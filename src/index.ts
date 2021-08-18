@@ -1,7 +1,16 @@
 import { CronjobConfiguration } from "./configuration";
-import { MetaProtocol } from "meta-protocol-helper/dist/src/meta-protocol";
+import { FunctionManager, MetaProtocol } from "meta-protocol-helper/dist/src/meta-protocol";
 
 export class CronJob extends MetaProtocol<CronjobConfiguration> {
+  constructor (config : CronjobConfiguration, manager : FunctionManager) {
+    super(config, manager);
+
+    this.validateConfiguration = this.validateConfiguration.bind(this);
+    this.start = this.start.bind(this);
+    this.stop = this.stop.bind(this);
+    this.getProtocolPublicMethods = this.getProtocolPublicMethods.bind(this);
+  }
+
   private process : NodeJS.Timeout;
 
   validateConfiguration () : void {
