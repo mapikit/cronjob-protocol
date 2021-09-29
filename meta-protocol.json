@@ -7,14 +7,14 @@
   "packageDetails": {
     "functionsDefinitions": [
       {
-        "input": {},
-        "output": {},
+        "inputParameters": {},
+        "outputData": {},
         "functionName": "stopJob",
         "description": "stops running job"
       },
       {
-        "input": {},
-        "output": {},
+        "inputParameters": {},
+        "outputData": {},
         "functionName": "startJob",
         "description": "Start the job"
       }
