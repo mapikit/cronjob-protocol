@@ -36,8 +36,9 @@ export class CronJob extends MetaProtocol<CronjobConfiguration> {
       const bop = this.bopsManager.get(this.protocolConfiguration.bopsName);
       console.log("[CronJob] Running Job", this.protocolConfiguration.bopsName);
       bop(this.protocolConfiguration.arguments)
-        .catch(() => {
+        .catch((error : Error) => {
           console.log("[CronJob] JOB RUN FAILED! ", this.protocolConfiguration.bopsName);
+          console.error(error);
         });
     }, this.protocolConfiguration.periodMillis);
   }
