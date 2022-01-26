@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.3 Update meta-protocol.json
+There was an update on the checking library, this is to ensure compatibility with MSYS version >= 0.3.0
 
 ## 1.0.2 Add Error Log
 Now, when a job fails, the error is properly logged to the console.

@@ -4,20 +4,18 @@
   "entrypoint": "./dist/index.js",
   "version": "1.0.0",
   "className": "CronJob",
-  "packageDetails": {
-    "functionsDefinitions": [
-      {
-        "inputParameters": {},
-        "outputData": {},
-        "functionName": "stopJob",
-        "description": "stops running job"
-      },
-      {
-        "inputParameters": {},
-        "outputData": {},
-        "functionName": "startJob",
-        "description": "Start the job"
-      }
-    ]
-  }
+  "functionDefinitions": [
+    {
+      "input": {},
+      "output": {},
+      "functionName": "stopJob",
+      "description": "stops running job"
+    },
+    {
+      "input": {},
+      "output": {},
+      "functionName": "startJob",
+      "description": "Start the job"
+    }
+  ]
 }
