@@ -2,7 +2,7 @@
   "protocolName": "cronjob-protocol",
   "description": "Run functions in a timely fashion",
   "entrypoint": "./dist/index.js",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "className": "CronJob",
   "functionDefinitions": [
     {
@@ -17,5 +17,10 @@
       "functionName": "startJob",
       "description": "Start the job"
     }
-  ]
+  ],
+  "configurationFormat": {
+    "arguments": { "type": "object" },
+    "bopsName": { "type": "string" },
+    "periodMillis": { "type": "number" }
+  }
 }
