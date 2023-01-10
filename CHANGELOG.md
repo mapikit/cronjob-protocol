@@ -1,4 +1,7 @@
 # Changelog
+## Fix description file
+Updates to Object Definition required this to be updated.
+
 ## 1.0.4 Update to new Libraries
 ## 1.0.3 Update meta-protocol.json
 There was an update on the checking library, this is to ensure compatibility with MSYS version >= 0.3.0
