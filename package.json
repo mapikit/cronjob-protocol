@@ -27,10 +27,11 @@
     "url": "https://github.com/mapikit/cronjob-protocol/issues"
   },
   "dependencies": {
-    "meta-protocol-helper": "^0.1.1"
+    "@meta-system/meta-protocol-helper": "^0.3.4"
   },
   "homepage": "https://github.com/mapikit/cronjob-protocol#readme",
   "devDependencies": {
+    "@meta-system/meta-function-helper": "^0.3.4",
     "@types/node": "^12.12.35",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",

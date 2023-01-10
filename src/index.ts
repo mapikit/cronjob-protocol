@@ -1,5 +1,6 @@
+import type { FunctionManager } from "@meta-system/meta-function-helper";
+import { MetaProtocol } from "@meta-system/meta-protocol-helper";
 import { CronjobConfiguration } from "./configuration";
-import { FunctionManager, MetaProtocol } from "meta-protocol-helper/dist/src/meta-protocol";
 
 export class CronJob extends MetaProtocol<CronjobConfiguration> {
   constructor (config : CronjobConfiguration, manager : FunctionManager) {
