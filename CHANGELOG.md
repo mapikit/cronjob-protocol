@@ -1,4 +1,6 @@
 # Changelog
+## Migrate to ES modules
+Now this module is written as an ES Module.
 ## Fix description file
 Updates to Object Definition required this to be updated.
 
