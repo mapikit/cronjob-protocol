@@ -1,4 +1,5 @@
 # Changelog
+## 1.0.7 Fix version numbering
 ## Migrate to ES modules
 Now this module is written as an ES Module.
 ## Fix description file

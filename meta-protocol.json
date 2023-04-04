@@ -2,7 +2,6 @@
   "protocolName": "cronjob-protocol",
   "description": "Run functions in a timely fashion",
   "entrypoint": "./dist/index.js",
-  "version": "1.0.5",
   "className": "CronJob",
   "functionDefinitions": [
     {
