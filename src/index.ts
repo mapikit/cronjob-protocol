@@ -1,12 +1,35 @@
-import type { FunctionManager } from "@meta-system/meta-function-helper";
-import { MetaProtocol } from "@meta-system/meta-protocol-helper";
-import { CronjobConfiguration } from "./configuration.js";
+import { ObjectDefinition } from "@meta-system/object-definition";
 
-export class CronJob extends MetaProtocol<CronjobConfiguration> {
-  constructor (config : CronjobConfiguration, manager : FunctionManager) {
-    super(config, manager);
+export type FunctionDefinition = {
+  input : ObjectDefinition;
+  output : ObjectDefinition;
+  functionName : string;
+}
 
-    this.validateConfiguration = this.validateConfiguration.bind(this);
+export type MetaSystemFunction = {
+  function : Function;
+  definition : FunctionDefinition;
+}
+
+type LoggerFunction = (...data : unknown[]) => void
+export type LoggerType = {
+  fatal : LoggerFunction;
+  success : LoggerFunction;
+  operation : LoggerFunction;
+  error : LoggerFunction;
+  warn : LoggerFunction;
+  info : LoggerFunction;
+  debug : LoggerFunction;
+}
+
+export class CronJob {
+  constructor (
+    private logger : LoggerType,
+    private functionToExecute : Function,
+    private functionName : string,
+    private period : number,
+    private readonly execArgs : any) {
+
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.getProtocolPublicMethods = this.getProtocolPublicMethods.bind(this);
@@ -14,45 +37,49 @@ export class CronJob extends MetaProtocol<CronjobConfiguration> {
 
   private process : NodeJS.Timeout;
 
-  validateConfiguration () : void {
-    const errorMessage = Error("[CronJob] Failed to initialize - configuration invalid");
-
-    if (typeof this.protocolConfiguration.bopsName !== "string") {
-      throw errorMessage;
-    }
-
-    if (typeof this.protocolConfiguration.periodMillis !== "number") {
-      throw errorMessage;
-    }
-
-    if (typeof this.protocolConfiguration.arguments !== "object" ||
-    Array.isArray(this.protocolConfiguration.arguments)) {
-      throw errorMessage;
-    }
-  }
-
   start () : void {
-    console.log("[CronJob] Starting job for BOp", this.protocolConfiguration.bopsName);
+    this.logger.info("[CronJob] Starting job for BOp: ", this.functionName);
     this.process = setInterval(() => {
-      const bop = this.bopsManager.get(this.protocolConfiguration.bopsName);
-      console.log("[CronJob] Running Job", this.protocolConfiguration.bopsName);
-      bop(this.protocolConfiguration.arguments)
+      this.logger.info("[CronJob] Running Job: ", this.functionName);
+      this.functionToExecute(this.execArgs)
         ?.catch((error : Error) => {
-          console.log("[CronJob] JOB RUN FAILED! ", this.protocolConfiguration.bopsName);
-          console.error(error);
+          this.logger.info("[CronJob] JOB RUN FAILED! ", this.functionName);
+          this.logger.error(error);
         });
-    }, this.protocolConfiguration.periodMillis);
+    }, this.period);
   }
 
   stop () : void {
-    console.log("[CronJob] Stopping job for BOp", this.protocolConfiguration.bopsName);
+    this.logger.info("[CronJob] Stopping job for BOp: ", this.functionName);
     clearInterval(this.process);
   }
 
-  getProtocolPublicMethods () : Record<string, Function> {
-    return {
-      stopJob: this.stop,
-      startJob: this.start,
-    };
+  getProtocolPublicMethods () : MetaSystemFunction[] {
+    const stopJobMetaSystemFunction : MetaSystemFunction = {
+      function: this.stop,
+      definition: stopJobDefinition
+    }
+
+    const startJobMetaSystemFunction : MetaSystemFunction = {
+      function: this.start,
+      definition: startJobDefinition
+    }
+
+    return [
+      stopJobMetaSystemFunction,
+      startJobMetaSystemFunction,
+    ]
   }
+}
+
+export const stopJobDefinition : FunctionDefinition = {
+  functionName: "stopJob",
+  input: {},
+  output: {}
+}
+
+export const startJobDefinition : FunctionDefinition = {
+  functionName: "startJob",
+  input: {},
+  output: {}
 }

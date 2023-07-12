@@ -1,4 +1,7 @@
 # Changelog
+## 1.0.8 Migrate to Addons Architecture
+Update to migrate module to fit into new Meta-System's Addons Architecture.
+
 ## 1.0.7 Fix version numbering
 ## Migrate to ES modules
 Now this module is written as an ES Module.

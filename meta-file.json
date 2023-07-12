@@ -1,0 +1,14 @@
+{
+  "name": "cronjob-protocol",
+  "version": "1.0.8",
+  "entrypoint": "./dist/entrypoint.js",
+  "configurationFormat": {
+    "arguments": { "type": "cloudedObject" },
+    "bopsName": { "type": "string" },
+    "periodMillis": { "type": "number" }
+  },
+  "permissions": [
+    { "entity": "bopFunctions", "permissions": ["get_function"] },
+    { "entity": "addonsFunctions", "permissions": ["preregister", "set_registered"] }
+  ]
+}
